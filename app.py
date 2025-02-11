@@ -118,7 +118,7 @@ if user_menu == 'Country-wise Analysis':
         ax = sns.heatmap(pt,annot=True)
         st.pyplot(fig)
 
-    st.title("Top 10 athletes of " + selected_country)
+    st.title("Top 15 athletes of " + selected_country)
     top10_df = helper.most_successful_countrywise(df,selected_country)
     st.table(top10_df)
 
@@ -164,7 +164,7 @@ if user_menu == 'Athlete wise Analysis':
     selected_sport = st.selectbox('Select a Sport', sport_list)
     temp_df = helper.weight_v_height(df,selected_sport)
     fig,ax = plt.subplots()
-    ax = sns.scatterplot(temp_df['Weight'],temp_df['Height'],hue=temp_df['Medal'],style=temp_df['Sex'],s=60)
+    ax = sns.scatterplot(x=temp_df['Weight'],y=temp_df['Height'],hue=temp_df['Medal'],style=temp_df['Sex'],s=60)
     st.pyplot(fig)
 
     st.title("Men Vs Women Participation Over the Years")

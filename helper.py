@@ -79,13 +79,6 @@ def most_successful_countrywise(df, country):
 
     temp_df = temp_df[temp_df['region'] == country]
     return temp_df['Name'].value_counts().reset_index().rename(columns={'Name': 'Athlete Name', 'count': 'Medals Count'}).head(15).merge(df, left_on='Athlete Name',right_on='Name', how='left')[['Athlete Name', 'Medals Count', 'Sport']].drop_duplicates('Athlete Name')
-    # temp_df = df.dropna(subset=['Medal'])
-    #
-    # temp_df = temp_df[temp_df['region'] == country]
-    # x = temp_df['Name'].value_counts().reset_index()
-    # x = x.merge(df, left_on='athlete', right_on='Name', how='left')[['athlete', 'Name_x', 'Sport']].drop_duplicates('athlete')
-    # x.rename(columns={'index': 'athlete', 'Name_x': 'Medals'}, inplace=True)
-    # return x
 
 def weight_v_height(df,sport):
     athlete_df = df.drop_duplicates(subset=['Name', 'region'])
@@ -106,5 +99,6 @@ def men_vs_women(df):
     final.rename(columns={'Name_x': 'Male', 'Name_y': 'Female'}, inplace=True)
 
     final.fillna(0, inplace=True)
+    final = final.astype(int)
 
     return final
